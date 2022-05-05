@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+//dfgf
 @Entity
 @Table(name = "peliculas")
 public class Pelicula implements Serializable {
