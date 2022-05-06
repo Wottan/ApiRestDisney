@@ -23,20 +23,20 @@ public class Personaje implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "nombre")
+	@Column
 	private String nombre;
 
-	@Column()
+	@Column
 	private String edad;
 
-	@Column()
+	@Column
 	private Double peso;
 
-	@Column(length = 20000)
-	private String imagen;
-
-	@Column()
+	@Column
 	private String historia;
+
+	@Column(length = 10000)
+	private String imagen;
 
 	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)

@@ -42,6 +42,22 @@ public class Pelicula implements Serializable {
 		Uno, Dos, Tres, Cuatro, Cinco;
 	}
 
+	public Date getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
+	}
+
+	public Calificacion getCalificacion() {
+		return calificacion;
+	}
+
+	public void setCalificacion(Calificacion calificacion) {
+		this.calificacion = calificacion;
+	}
+
 	public Long getId() {
 		return id;
 	}
