@@ -21,7 +21,7 @@ public class Genero implements Serializable {
 	@Column(name = "nombre")
 	private String nombre;
 
-	@Column(length = 20000)
+	@Column(length = 16000)
 	private String imagen;
 
 	public String getNombre() {
