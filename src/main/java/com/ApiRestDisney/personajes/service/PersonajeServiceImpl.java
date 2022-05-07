@@ -13,7 +13,7 @@ import com.ApiRestDisney.personajes.entity.Personaje;
 public class PersonajeServiceImpl implements IPersonajeService {
 
 	@Autowired
-	IPersonajeDao iPersonajeDao;
+	private IPersonajeDao iPersonajeDao;
 
 	@Override
 	public List<Personaje> findAll() {
@@ -29,11 +29,11 @@ public class PersonajeServiceImpl implements IPersonajeService {
 	@Override
 	public Personaje findPersonaje(Personaje personaje) {
 		// TODO Auto-generated method stub
-		return iPersonajeDao.findPersonaje(personaje);
+		return null;
 	}
 
 	@Override
-	public Personaje checkProfesorLogin(Personaje personaje) {
+	public Personaje checkPersonajeLogin(Personaje personaje) {
 		// TODO Auto-generated method stub
 		return null;
 	}
