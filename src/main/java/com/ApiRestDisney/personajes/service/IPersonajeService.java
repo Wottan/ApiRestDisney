@@ -13,7 +13,7 @@ public interface IPersonajeService {
 
 	public Personaje findPersonaje(Personaje personaje);
 
-	public Personaje checkProfesorLogin(Personaje personaje);
+	public Personaje checkPersonajeLogin(Personaje personaje);
 
 	public void deletePersonaje(Personaje personaje);
 
