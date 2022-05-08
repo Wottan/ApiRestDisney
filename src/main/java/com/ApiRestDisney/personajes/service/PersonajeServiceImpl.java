@@ -17,7 +17,6 @@ public class PersonajeServiceImpl implements IPersonajeService {
 
 	@Override
 	public List<Personaje> findAll() {
-		// TODO Auto-generated method stub
 		return (List<Personaje>) iPersonajeDao.findAll();
 	}
 
@@ -27,14 +26,7 @@ public class PersonajeServiceImpl implements IPersonajeService {
 	}
 
 	@Override
-	public Personaje findPersonaje(Personaje personaje) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Personaje checkPersonajeLogin(Personaje personaje) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -46,13 +38,11 @@ public class PersonajeServiceImpl implements IPersonajeService {
 
 	@Override
 	public Personaje uptadePersonaje(Personaje personaje) {
-		// TODO Auto-generated method stub
 		return this.iPersonajeDao.save(personaje);
 	}
 
 	@Override
 	public Optional<Personaje> findPersonajeById(Long personajeId) {
-		// TODO Auto-generated method stub
 		return this.iPersonajeDao.findById(personajeId);
 	}
 
@@ -63,15 +53,29 @@ public class PersonajeServiceImpl implements IPersonajeService {
 	}
 
 	@Override
-	public void deleteAllPersonaje() {
+	public void deleteAllPersonajes() {
 		this.iPersonajeDao.deleteAll();
 
 	}
 
 	@Override
 	public Personaje findById(Long id) {
-		// TODO Auto-generated method stub
 		return this.iPersonajeDao.findById(id).orElse(null);
+	}
+
+	@Override
+	public Personaje findPersonajePorNombre(String nombre) {
+		return this.iPersonajeDao.findByNombre(nombre);
+	}
+
+	@Override
+	public Personaje findPersonajePorEdad(String edad) {
+		return this.iPersonajeDao.findByEdad(edad);
+	}
+
+	@Override
+	public Personaje findPersonajePorPeso(Double peso) {
+		return this.iPersonajeDao.findByPeso(peso);
 	}
 
 }

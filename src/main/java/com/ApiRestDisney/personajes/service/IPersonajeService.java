@@ -11,7 +11,11 @@ public interface IPersonajeService {
 
 	public Personaje save(Personaje personaje);;
 
-	public Personaje findPersonaje(Personaje personaje);
+	public Personaje findPersonajePorNombre(String nombre);
+
+	public Personaje findPersonajePorEdad(String edad);
+
+	public Personaje findPersonajePorPeso(Double peso);
 
 	public Personaje checkPersonajeLogin(Personaje personaje);
 
@@ -23,7 +27,7 @@ public interface IPersonajeService {
 
 	public void deletePersonaje(Long id);
 
-	public void deleteAllPersonaje();
+	public void deleteAllPersonajes();
 
 	public Personaje findById(Long id);
 
