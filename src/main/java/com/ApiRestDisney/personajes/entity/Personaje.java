@@ -103,4 +103,10 @@ public class Personaje implements Serializable {
 		this.createAt = createAt;
 	}
 
+	@Override
+	public String toString() {
+		return "Personaje [id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", peso=" + peso + ", historia="
+				+ historia + ", imagen=" + imagen + ", createAt=" + createAt + "]";
+	}
+
 }
