@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,20 +66,6 @@ public class PersonajeRestController {
 		return new ResponseEntity<>(this.personajeService.findAll(), HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/characters", params = "")
-	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<?> getPersonajes(@RequestParam(required = false) String[] params) {
-		System.out.println("Ingreso " + params);
-		Personaje personaje;
-
-		personaje = this.personajeService.findPersonajePorNombre("");
-		if (personaje != null) {
-			return new ResponseEntity<>(personaje, HttpStatus.OK);
-		}
-
-		return new ResponseEntity<>(this.personajeService.findAll(), HttpStatus.CREATED);
-	}
-
 	@GetMapping("/characters/{nombre}")
 	public Personaje getPersonajePorNombre(@PathVariable String nombre) {
 		System.out.println("nombre");
@@ -103,6 +90,23 @@ public class PersonajeRestController {
 			return new ResponseEntity<Personaje>(personaje, HttpStatus.CREATED);
 		}
 		return new ResponseEntity<Personaje>(HttpStatus.CONFLICT);
+
+	}
+
+	@PutMapping("/charactersUpdate/{id}")
+	public ResponseEntity<?> updatePersonaje(@PathVariable(value = "id") Long id, @RequestBody Personaje personaje) {
+		Personaje personajeDB = this.personajeService.findById(id);
+		System.out.println("---- " + personajeDB);
+		if (personajeDB != null) {
+			personajeDB.setNombre(personaje.getNombre());
+			personajeDB.setEdad(personaje.getEdad());
+			personajeDB.setPeso(personaje.getPeso());
+			personajeDB.setImagen(personaje.getImagen());
+			personajeDB.setHistoria(personaje.getHistoria());
+			this.personajeService.uptadePersonaje(personajeDB);
+			return new ResponseEntity<>(personajeDB, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 	}
 
