@@ -11,7 +11,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +28,7 @@ public class Pelicula implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "nombre")
+	@Column(name = "titulo")
 	private String titulo;
 
 	@Column(name = "create_at")
@@ -35,6 +37,10 @@ public class Pelicula implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	private Calificacion calificacion;
+
+	@ManyToOne
+	@JoinColumn(name = "generoId")
+	private Genero genero;
 
 	@ManyToMany(mappedBy = "peliculas")
 	private List<Personaje> personajes;
@@ -86,5 +92,15 @@ public class Pelicula implements Serializable {
 	public void setPersonajes(List<Personaje> personajes) {
 		this.personajes = personajes;
 	}
+
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
+	
+	
 
 }
