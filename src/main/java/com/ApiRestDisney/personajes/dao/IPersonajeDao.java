@@ -14,4 +14,6 @@ public interface IPersonajeDao extends CrudRepository<Personaje, Long> {
 
 	public Personaje findByEdad(String edad);
 
+	public Optional<Personaje> findById(Long id);
+
 }
