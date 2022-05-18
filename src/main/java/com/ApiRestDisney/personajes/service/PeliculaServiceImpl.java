@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ApiRestDisney.personajes.dao.IPeliculaDao;
 import com.ApiRestDisney.personajes.entity.Pelicula;
 
+@Service
 public class PeliculaServiceImpl implements IPeliculaService {
 
 	@Autowired
@@ -20,7 +22,6 @@ public class PeliculaServiceImpl implements IPeliculaService {
 
 	@Override
 	public Pelicula save(Pelicula pelicula) {
-		// TODO Auto-generated method stub
 		return this.iPeliculaDao.save(pelicula);
 	}
 
@@ -32,13 +33,11 @@ public class PeliculaServiceImpl implements IPeliculaService {
 
 	@Override
 	public Pelicula uptade(Pelicula pelicula) {
-		// TODO Auto-generated method stub
 		return this.iPeliculaDao.save(pelicula);
 	}
 
 	@Override
 	public Optional<Pelicula> findById(Long id) {
-		// TODO Auto-generated method stub
 		return this.iPeliculaDao.findById(id);
 	}
 
@@ -50,5 +49,10 @@ public class PeliculaServiceImpl implements IPeliculaService {
 	@Override
 	public void deleteAll() {
 		this.iPeliculaDao.deleteAll();
+	}
+
+	@Override
+	public Pelicula findByTitulo(String titulo) {
+		return this.iPeliculaDao.findByTitulo(titulo);
 	}
 }

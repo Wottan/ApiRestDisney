@@ -21,4 +21,6 @@ public interface IPeliculaService {
 
 	public void deleteAll();
 
+	public Pelicula findByTitulo(String titulo);
+
 }
