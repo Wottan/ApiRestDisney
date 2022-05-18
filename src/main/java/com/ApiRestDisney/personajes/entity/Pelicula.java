@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,14 +41,22 @@ public class Pelicula implements Serializable {
 	private Calificacion calificacion;
 
 	@ManyToOne
-	@JoinColumn(name = "generoId")
+	@JoinColumn(name = "genero")
 	private Genero genero;
 
-	@ManyToMany(mappedBy = "peliculas")
+	@Column(length = 10000)
+	private String imagen;
+
+	@ManyToMany(mappedBy = "peliculas", cascade = CascadeType.ALL)
 	private List<Personaje> personajes;
 
 	public Pelicula() {
 		super();
+	}
+
+	@PrePersist
+	public void prePersist() {
+		createAt = new Date();
 	}
 
 	public enum Calificacion {
@@ -100,7 +110,13 @@ public class Pelicula implements Serializable {
 	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
-	
-	
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 
 }
