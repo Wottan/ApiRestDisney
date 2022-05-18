@@ -12,7 +12,7 @@ public interface IGeneroService {
 
 	public void delete(Genero genero);
 
-	public Genero uptade(Genero genero);
+	public Genero update(Genero genero);
 
 	public Optional<Genero> findByGeneroId(Long id);
 

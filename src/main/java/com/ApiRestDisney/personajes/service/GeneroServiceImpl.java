@@ -31,7 +31,7 @@ public class GeneroServiceImpl implements IGeneroService {
 	}
 
 	@Override
-	public Genero uptade(Genero genero) {
+	public Genero update(Genero genero) {
 		return this.generoDao.save(genero);
 	}
 

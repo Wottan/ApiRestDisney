@@ -32,7 +32,7 @@ public class PeliculaServiceImpl implements IPeliculaService {
 	}
 
 	@Override
-	public Pelicula uptade(Pelicula pelicula) {
+	public Pelicula update(Pelicula pelicula) {
 		return this.iPeliculaDao.save(pelicula);
 	}
 

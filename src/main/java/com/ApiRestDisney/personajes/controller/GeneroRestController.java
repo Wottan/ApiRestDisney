@@ -64,7 +64,7 @@ public class GeneroRestController {
 		if (generoDB != null) {
 			generoDB.setNombre(genero.getNombre());
 			generoDB.setImagen(genero.getImagen());
-			this.generoService.uptade(generoDB);
+			this.generoService.update(generoDB);
 			return new ResponseEntity<>(generoDB, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
