@@ -13,7 +13,7 @@ public interface IPeliculaService {
 
 	public void delete(Pelicula pelicula);
 
-	public Pelicula uptade(Pelicula pelicula);
+	public Pelicula update(Pelicula pelicula);
 
 	public Optional<Pelicula> findById(Long id);
 

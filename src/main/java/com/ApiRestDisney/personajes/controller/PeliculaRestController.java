@@ -29,7 +29,7 @@ public class PeliculaRestController {
 
 	@GetMapping("/movies")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<?> getPersonajes(@RequestParam(required = false) String titulo,
+	public ResponseEntity<?> getPeliculas(@RequestParam(required = false) String titulo,
 			@RequestParam(required = false) Long idGenre) {
 
 		List<Pelicula> peliculas = this.peliculaService.findAll();
@@ -67,7 +67,7 @@ public class PeliculaRestController {
 	}
 
 	@GetMapping("/movies/{id}")
-	public ResponseEntity<?> getGenero(@PathVariable Long id) {
+	public ResponseEntity<?> getPelicula(@PathVariable Long id) {
 		Pelicula pelicula = this.peliculaService.findById(id).orElse(null);
 		if (pelicula != null) {
 			return new ResponseEntity<>(pelicula, HttpStatus.OK);
@@ -76,7 +76,7 @@ public class PeliculaRestController {
 	}
 
 	@PostMapping("/movies")
-	public ResponseEntity<?> addGenero(@RequestBody Pelicula pelicula) {
+	public ResponseEntity<?> addPelicula(@RequestBody Pelicula pelicula) {
 		if (this.peliculaService.findByTitulo(pelicula.getTitulo()) == null) {
 			this.peliculaService.save(pelicula);
 			return new ResponseEntity<>(pelicula, HttpStatus.CREATED);
@@ -99,14 +99,14 @@ public class PeliculaRestController {
 	}
 
 	@PutMapping("/movies/{id}")
-	public ResponseEntity<?> updateGenero(@PathVariable(value = "id") Long id, @RequestBody Pelicula pelicula) {
+	public ResponseEntity<?> updatePelicula(@PathVariable(value = "id") Long id, @RequestBody Pelicula pelicula) {
 		Pelicula peliculaDB = this.peliculaService.findById(id).orElse(null);
 		if (peliculaDB != null) {
 			peliculaDB.setTitulo(peliculaDB.getTitulo());
 			peliculaDB.setCalificacion(pelicula.getCalificacion());
 			peliculaDB.setGenero(pelicula.getGenero());
 			peliculaDB.setImagen(pelicula.getImagen());
-			this.peliculaService.uptade(peliculaDB);
+			this.peliculaService.update(peliculaDB);
 			return new ResponseEntity<>(peliculaDB, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
