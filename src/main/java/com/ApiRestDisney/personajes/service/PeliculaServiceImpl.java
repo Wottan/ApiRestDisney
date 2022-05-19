@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.ApiRestDisney.personajes.dao.IPeliculaDao;
@@ -16,8 +17,8 @@ public class PeliculaServiceImpl implements IPeliculaService {
 	private IPeliculaDao iPeliculaDao;
 
 	@Override
-	public List<Pelicula> findAll() {
-		return (List<Pelicula>) this.iPeliculaDao.findAll();
+	public List<Pelicula> findAll(Sort sort) {
+		return (List<Pelicula>) this.iPeliculaDao.findAll(sort);
 	}
 
 	@Override
