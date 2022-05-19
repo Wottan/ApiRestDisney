@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ApiRestDisney.personajes.entity.Pelicula;
+import com.ApiRestDisney.personajes.entity.Personaje;
 import com.ApiRestDisney.personajes.service.IPeliculaService;
+import com.ApiRestDisney.personajes.service.IPersonajeService;
 
 @RestController
 @RequestMapping("/api")
@@ -28,6 +30,9 @@ public class PeliculaRestController {
 
 	@Autowired
 	private IPeliculaService peliculaService;
+
+	@Autowired
+	private IPersonajeService personajeService;
 
 	@GetMapping("/movies")
 	@ResponseStatus(HttpStatus.OK)
@@ -113,6 +118,38 @@ public class PeliculaRestController {
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
+	}
+
+	@PostMapping("/movies/{idMovie}/characters/{idCharacter}")
+	public ResponseEntity<?> addPersonajeAPelicula(@PathVariable(value = "idMovie") Long idMovie,
+			@PathVariable(value = "idCharacter") Long idCharacter) {
+		Pelicula pelicula = this.peliculaService.findById(idMovie).orElse(null);
+		if (pelicula != null) {
+			Personaje personaje = this.personajeService.findById(idCharacter);
+			if (personaje != null) {
+				pelicula.getPersonajes().add(personaje);
+				this.peliculaService.update(pelicula);
+				return new ResponseEntity<>(pelicula, HttpStatus.OK);
+			}
+		}
+
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+	@DeleteMapping("/movies/{idMovie}/characters/{idCharacter}")
+	public ResponseEntity<?> delete(@PathVariable(value = "idMovie") Long idMovie,
+			@PathVariable(value = "idCharacter") Long idCharacter) {
+		Pelicula pelicula = this.peliculaService.findById(idMovie).orElse(null);
+		if (pelicula != null) {
+			Personaje personaje = this.personajeService.findById(idCharacter);
+			if (personaje != null) {
+				pelicula.getPersonajes().remove(personaje);
+				this.peliculaService.update(pelicula);
+				return new ResponseEntity<>(pelicula, HttpStatus.OK);
+			}
+		}
+
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 }

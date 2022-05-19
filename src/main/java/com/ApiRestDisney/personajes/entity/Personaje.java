@@ -51,8 +51,7 @@ public class Personaje implements Serializable {
 		createAt = new Date();
 	}
 
-	@ManyToMany
-	@JoinTable(joinColumns = @JoinColumn(name = "personaje_id"), inverseJoinColumns = @JoinColumn(name = "pelicula_id"))
+	@ManyToMany(mappedBy = "personajes")
 	private List<Pelicula> peliculas;
 
 	public Long getId() {

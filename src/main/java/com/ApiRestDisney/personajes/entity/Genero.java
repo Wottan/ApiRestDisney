@@ -84,4 +84,9 @@ public class Genero implements Serializable {
 		this.peliculas = peliculas;
 	}
 
+	@Override
+	public String toString() {
+		return "Genero [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", createAt=" + createAt + "]";
+	}
+
 }
