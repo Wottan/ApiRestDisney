@@ -3,11 +3,13 @@ package com.ApiRestDisney.personajes.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Sort;
+
 import com.ApiRestDisney.personajes.entity.Pelicula;
 
 public interface IPeliculaService {
 
-	public List<Pelicula> findAll();
+	public List<Pelicula> findAll(Sort sort);
 
 	public Pelicula save(Pelicula pelicula);
 

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,9 +32,9 @@ public class PeliculaRestController {
 	@GetMapping("/movies")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<?> getPeliculas(@RequestParam(required = false) String titulo,
-			@RequestParam(required = false) Long idGenre) {
+			@RequestParam(required = false) Long idGenre, @RequestParam(required = false) Direction order) {
 
-		List<Pelicula> peliculas = this.peliculaService.findAll();
+		List<Pelicula> peliculas = this.peliculaService.findAll(Sort.by(order, "createAt"));
 
 		Predicate<Pelicula> filtro = new Predicate<Pelicula>() {
 			@Override
